@@ -1,11 +1,12 @@
-import { baseURL } from "../test-helper";
-
 describe("Buttons Component", () => {
     beforeEach(async () => {
         await Promise.all([
-            page.goto(`${baseURL}/e2e-tests/browser-global/index.html`, {
-                waitUntil: "networkidle2",
-            }),
+            page.goto(
+                `http://localhost:${process.env.PORT}/e2e-tests/browser-global/index.html`,
+                {
+                    waitUntil: "networkidle2",
+                }
+            ),
             page.waitForResponse((response) =>
                 response.url().startsWith("https://www.paypal.com/sdk/js")
             ),

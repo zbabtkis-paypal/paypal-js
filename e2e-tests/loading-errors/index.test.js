@@ -1,10 +1,11 @@
-import { baseURL } from "../test-helper";
-
 describe("Validation Errors", () => {
     beforeEach(async () => {
-        await page.goto(`${baseURL}/e2e-tests/loading-errors/index.html`, {
-            waitUntil: "networkidle2",
-        });
+        await page.goto(
+            `http://localhost:${process.env.PORT}/e2e-tests/loading-errors/index.html`,
+            {
+                waitUntil: "networkidle2",
+            }
+        );
     });
 
     it("should return the expected page <title>", async () => {
