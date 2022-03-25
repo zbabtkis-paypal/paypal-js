@@ -1,5 +1,5 @@
 /*!
- * paypal-js v5.0.2 (2022-03-25T16:30:29.188Z)
+ * paypal-js v5.0.2 (2022-03-25T16:38:27.486Z)
  * Copyright 2020-present, PayPal, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -90,8 +90,6 @@ var paypalLoadScript = (function (exports) {
   // Store setTimeout reference so promise-polyfill will be unaffected by
   // other code modifying setTimeout (like sinon.useFakeTimers())
   var setTimeoutFunc = setTimeout;
-  // @ts-ignore
-  var setImmediateFunc = typeof setImmediate !== 'undefined' ? setImmediate : null;
 
   function isArray(x) {
     return Boolean(x && typeof x.length !== 'undefined');
@@ -325,10 +323,10 @@ var paypalLoadScript = (function (exports) {
   // Use polyfill for setImmediate for performance gains
   Promise$1._immediateFn =
     // @ts-ignore
-    (typeof setImmediateFunc === 'function' &&
+    (typeof setImmediate === 'function' &&
       function(fn) {
         // @ts-ignore
-        setImmediateFunc(fn);
+        setImmediate(fn);
       }) ||
     function(fn) {
       setTimeoutFunc(fn, 0);
